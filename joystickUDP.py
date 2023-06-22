@@ -38,30 +38,16 @@ def udp_send(sock, ip, port, message):
 if __name__ == "__main__":
     sock, joystick = init()
     l = 0.2 # meters
-    # absz = 0
-    # b_old = 0
-    # b_state = 1
     while True:
         time_start = time.time()
+        
         # Get the joystick readings
         pygame.event.pump()
-        # b = joystick.get_button(1)
-        # if b == 1 and b_old == 0:
-        #     b_state = not b_state
-        # b_old = b
-            
         fx = -joystick.get_axis(1) # left handler: up-down, inverted
         fy = joystick.get_axis(0) # left handler: left-right
         fz = -joystick.get_axis(4)  # right handler: up-down, inverted
         tauz = joystick.get_axis(3) # right handler: left-right
         taux = 0
-        # tauy = 0
-        #absz = .5
-        # if abs(joystick.get_axis(4)) > .1:
-        #     absz += -0.02*joystick.get_axis(4)
-        # if absz < 0 or b_state == 1:
-        #     absz = 0
-
         
         print(fx, taux, fz, tauz)
 
@@ -74,8 +60,6 @@ if __name__ == "__main__":
         f2 = math.sqrt(f2x**2 + f2z**2) *255/3
         t1 = math.atan2(f1z, f1x)*180/math.pi
         t2 = math.atan2(f2z, f2x)*180/math.pi
-        # print(round(fx,2), round(fy,2), round(fz,2), round(tauz,2), round(absz,2))
-        # print()
         
         message = struct.pack('<ffff', fx , fy , fz, taux) 
         udp_send(sock, UDP_IP, UDP_PORT, message)
