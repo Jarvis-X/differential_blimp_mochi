@@ -1,5 +1,6 @@
 # differential_blimp_mochi
 This script intemds to run with [this Arduino sketch](https://github.com/LehighBlimpGroup/DC_motor_mochi_blimp/blob/main/AsyncUDPServerAIRLabActualOriginal.ino) on an ESP32C3/ESP32S3 board.
+* To run, type in a terminal `python joystickUDP.py`
 * Dependencies:
   - pygame
   - numpy
